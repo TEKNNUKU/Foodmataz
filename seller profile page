@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seller Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Seller Profile</h1>
+  <div class="seller-info">
+    <h2>{{ seller.name }}</h2>
+    <p>Email: {{ seller.email }}</p>
+    <p>Phone: {{ seller.phone }}</p>
+    <p>Location: {{ seller.location }}</p>
+    <p>Delivery Range: {{ seller.delivery_range }} miles</p>
+  </div>
+  <h2>Menu</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in seller.items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>${{ item.price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
