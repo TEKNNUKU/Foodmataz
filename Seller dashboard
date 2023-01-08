@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seller Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Seller Dashboard</h1>
+  <h2>Sales Summary</h2>
+  <table>
+    <tr>
+      <td>Total Sales:</td>
+      <td>${{ total_sales }}</td>
+    </tr>
+    <tr>
+      <td>Total Orders:</td>
+      <td>{{ total_orders }}</td>
+    </tr>
+    <tr>
+      <td>Average Order Value:</td>
+      <td>${{ average_order_value }}</td>
+    </tr>
+  </table>
+  <h2>Manage Listings</h2>
+  <a href="/add-listing">Add a new listing</a><br>
+  <a href="/edit-listings">Edit existing listings</a>
+  <h2>Manage Orders</h2>
+  <a href="/view-orders">View pending orders</a><br>
+  <a href="/mark-orders-complete">Mark orders as complete</a>
+</body>
+</html>
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+}
