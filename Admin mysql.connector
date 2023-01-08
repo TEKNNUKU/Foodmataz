@@ -1,0 +1,96 @@
+import mysql.connector
+
+def get_users():
+  # Connect to the database
+  try:
+    connection = mysql.connector.connect(
+      host="localhost",
+      user="user",
+      password="password",
+      database="foodmataz"
+    )
+  except mysql.connector.Error as error:
+    print("Failed to connect to database: {}".format(error))
+    return []
+
+  cursor = connection.cursor()
+
+  # Query the database for a list of users
+  query = """
+    SELECT id, name, email
+    FROM users
+  """
+  try:
+    cursor.execute(query)
+  except mysql.connector.Error as error:
+    print("Failed to execute query: {}".format(error))
+    connection.close()
+    return []
+  users = cursor.fetchall()
+
+  # Close the connection
+  connection.close()
+
+  return users
+
+def add_user(name, email):
+  # Connect to the database
+  try:
+    connection = mysql.connector.connect(
+      host="localhost",
+      user="user",
+      password="password",
+      database="foodmataz"
+    )
+  except mysql.connector.Error as error:
+    print("Failed to connect to database: {}".format(error))
+    return False
+
+  cursor = connection.cursor()
+
+  # Insert a new user into the database using a prepared statement and parameterized query
+  query = """
+    INSERT INTO users (name, email)
+    VALUES (%s, %s)
+  """
+  values = (name, email)
+  try:
+    cursor.execute(query, values)
+    connection.commit()
+  except mysql.connector.Error as error:
+    print("Failed to execute query: {}".format(error))
+    connection.rollback()
+    connection.close()
+    return False
+
+  # Close the connection
+  connection.close()
+
+  return True
+
+def edit_user(user_id, name, email):
+  # Connect to the database
+  try:
+    connection = mysql.connector.connect(
+      host="localhost",
+      user="user",
+      password="password",
+      database="foodmataz"
+    )
+  except mysql.connector.Error as error:
+    print("Failed to connect to database: {}".format(error))
+    return False
+
+  cursor = connection.cursor()
+
+  # Update an existing user in the database using a prepared statement and parameterized query
+  query = """
+    UPDATE users
+    SET name = %s, email = %s
+    WHERE id = %s
+  """
+  values = (name, email, user_id)
+  try:
+    cursor.execute(query, values)
+    connection.commit()
+  except mysql.connector.Error
