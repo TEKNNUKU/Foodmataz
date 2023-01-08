@@ -1,0 +1,21 @@
+import mysql.connector
+
+def get_order_history(user_id):
+  # Connect to the database
+  connection = mysql.connector.connect(
+    host="localhost",
+    user="user",
+    password="password",
+    database="foodmataz"
+  )
+  cursor = connection.cursor()
+
+  # Query the database for the user's orders
+  query = "SELECT * FROM orders WHERE user_id = %s"
+  cursor.execute(query, (user_id,))
+  orders = cursor.fetchall()
+
+  # Close the connection
+  connection.close()
+
+  return orders
