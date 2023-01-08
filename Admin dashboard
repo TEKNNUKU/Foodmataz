@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <h2>Manage Users</h2>
+  <a href="/view-users">View all users</a><br>
+  <a href="/add-user">Add a new user</a><br>
+  <a href="/edit-user">Edit an existing user</a><br>
+  <a href="/delete-user">Delete a user</a>
+  <h2>Manage Sellers</h2>
+  <a href="/view-sellers">View all sellers</a><br>
+  <a href="/add-seller">Add a new seller</a><br>
+  <a href="/edit-seller">Edit an existing seller</a><br>
+  <a href="/delete-seller">Delete a seller</a>
+  <h2>Manage Carriers</h2>
+  <a href="/view-carriers">View all carriers</a><br>
+  <a href="/add-carrier">Add a new carrier</a><br>
+  <a href="/edit-carrier">Edit an existing carrier</a><br>
+  <a href="/delete-carrier">Delete a carrier</a>
+  <h2>Manage Orders</h2>
+  <a href="/view-orders">View all orders</a><br>
+  <a href="/delete-order">Delete an order</a>
+</body>
+</html>
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+}
+
+h2 {
+  margin-top: 50px;
+}
