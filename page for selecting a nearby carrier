@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Carrier</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Select Carrier</h1>
+  <p>Please select a carrier from the list below to deliver your order:</p>
+  <form>
+    <label for="carrier-select">Carrier:</label><br>
+    <select id="carrier-select" name="carriers">
+      {% for carrier in carriers %}
+      <option value="{{ carrier.id }}">{{ carrier.name }} ({{ carrier.distance }} miles away)</option>
+      {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit" value="Select">
+  </form>
+</body>
+</html>
