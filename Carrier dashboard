@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carrier Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Carrier Dashboard</h1>
+  <h2>Delivery Summary</h2>
+  <table>
+    <tr>
+      <td>Total Deliveries:</td>
+      <td>{{ total_deliveries }}</td>
+    </tr>
+    <tr>
+      <td>Total Distance:</td>
+      <td>{{ total_distance }} miles</td>
+    </tr>
+  </table>
+  <h2>Manage Deliveries</h2>
+  <a href="/view-deliveries">View pending deliveries</a><br>
+  <a href="/mark-deliveries-complete">Mark deliveries as complete</a>
+</body>
+</html>
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+}
