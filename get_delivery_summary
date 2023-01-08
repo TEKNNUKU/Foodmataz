@@ -1,0 +1,35 @@
+import mysql.connector
+
+def get_delivery_summary(carrier_id):
+  # Connect to the database
+  try:
+    connection = mysql.connector.connect(
+      host="localhost",
+      user="user",
+      password="password",
+      database="foodmataz"
+    )
+  except mysql.connector.Error as error:
+    print("Failed to connect to database: {}".format(error))
+    return (0, 0)
+
+  cursor = connection.cursor()
+
+  # Query the database for the carrier's delivery summary
+  query = """
+    SELECT COUNT(*) AS total_deliveries, SUM(distance) AS total_distance
+    FROM deliveries
+    WHERE carrier_id = %s
+  """
+  try:
+    cursor.execute(query, (carrier_id,))
+  except mysql.connector.Error as error:
+    print("Failed to execute query: {}".format(error))
+    connection.close()
+    return (0, 0)
+  delivery_summary = cursor.fetchone()
+
+  # Close the connection
+  connection.close()
+
+  return delivery_summary
