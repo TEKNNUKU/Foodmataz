@@ -1,0 +1,72 @@
+-- Create a database for the foodmataz platform
+CREATE DATABASE foodmataz;
+
+-- Use the foodmataz database
+USE foodmataz;
+
+-- Create a table for users
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(255) NOT NULL,
+  latitude DECIMAL(10, 8) NOT NULL,
+  longitude DECIMAL(11, 8) NOT NULL,
+  address VARCHAR(255),
+  city VARCHAR(255),
+  country VARCHAR(255)
+);
+
+-- Create a table for sellers
+CREATE TABLE sellers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(255) NOT NULL,
+  latitude DECIMAL(10, 8) NOT NULL,
+  longitude DECIMAL(11, 8) NOT NULL,
+  address VARCHAR(255),
+  city VARCHAR(255),
+  country VARCHAR(255),
+  delivery_range INT NOT NULL
+);
+
+-- Create a table for carriers
+CREATE TABLE carriers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(255) NOT NULL,
+  latitude DECIMAL(10, 8) NOT NULL,
+  longitude DECIMAL(11, 8) NOT NULL,
+  address VARCHAR(255),
+  city VARCHAR(255),
+  country VARCHAR(255)
+);
+
+-- Create a table for items
+CREATE TABLE items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(255),
+  price DECIMAL(10, 2) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  seller_id INT NOT NULL,
+  FOREIGN KEY (seller_id) REFERENCES sellers(id)
+);
+
+-- Create a table for orders
+CREATE TABLE orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  seller_id INT NOT NULL,
+  carrier_id INT NOT NULL,
+  item_id INT NOT NULL,
+  quantity INT NOT NULL,
+  total_price DECIMAL(10, 2) NOT NULL,
+  status ENUM('pending', 'in progress', 'completed') NOT NULL DEFAULT 'pending',
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (seller_id) REFERENCES sellers(id),
+  FOREIGN KEY (carrier_id) REFERENCES carriers(id),
+  FOREIGN KEY (item_id) REFERENCES items(id)
+);
