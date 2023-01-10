@@ -1,96 +1,69 @@
 import mysql.connector
+from mysql.connector import Error
 
-def get_users():
-  # Connect to the database
-  try:
-    connection = mysql.connector.connect(
-      host="localhost",
-      user="user",
-      password="password",
-      database="foodmataz"
-    )
-  except mysql.connector.Error as error:
-    print("Failed to connect to database: {}".format(error))
-    return []
+def get_admin_dashboard_data():
+    try:
+        # Connect to the MySQL server
+        cnx = mysql.connector.connect(user='root', password='password',
+                                      host='hostname',
+                                      database='foodmataz')
 
-  cursor = connection.cursor()
+        # Create a cursor object
+        cursor = cnx.cursor()
 
-  # Query the database for a list of users
-  query = """
-    SELECT id, name, email
-    FROM users
-  """
-  try:
-    cursor.execute(query)
-  except mysql.connector.Error as error:
-    print("Failed to execute query: {}".format(error))
-    connection.close()
-    return []
-  users = cursor.fetchall()
+        # Get the number of users
+        query = "SELECT COUNT(*) FROM users"
+        cursor.execute(query)
+        num_users = cursor.fetchone()[0]
 
-  # Close the connection
-  connection.close()
+        # Get the number of sellers
+        query = "SELECT COUNT(*) FROM sellers"
+        cursor.execute(query)
+        num_sellers = cursor.fetchone()[0]
 
-  return users
+        # Get the number of carriers
+        query = "SELECT COUNT(*) FROM carriers"
+        cursor.execute(query)
+        num_carriers = cursor.fetchone()[0]
 
-def add_user(name, email):
-  # Connect to the database
-  try:
-    connection = mysql.connector.connect(
-      host="localhost",
-      user="user",
-      password="password",
-      database="foodmataz"
-    )
-  except mysql.connector.Error as error:
-    print("Failed to connect to database: {}".format(error))
-    return False
+        # Get the number of items
+        query = "SELECT COUNT(*) FROM items"
+        cursor.execute(query)
+        num_items = cursor.fetchone()[0]
 
-  cursor = connection.cursor()
+        # Get the total revenue
+        query = "SELECT SUM(total_price) FROM orders WHERE status='completed'"
+        cursor.execute(query)
+        total_revenue = cursor.fetchone()[0]
 
-  # Insert a new user into the database using a prepared statement and parameterized query
-  query = """
-    INSERT INTO users (name, email)
-    VALUES (%s, %s)
-  """
-  values = (name, email)
-  try:
-    cursor.execute(query, values)
-    connection.commit()
-  except mysql.connector.Error as error:
-    print("Failed to execute query: {}".format(error))
-    connection.rollback()
-    connection.close()
-    return False
+        # Get the number of pending orders
+        query = "SELECT COUNT(*) FROM orders WHERE status='pending'"
+        cursor.execute(query)
+        num_pending_orders = cursor.fetchone()[0]
 
-  # Close the connection
-  connection.close()
+        # Get the number of completed orders
+        query = "SELECT COUNT(*) FROM orders WHERE status='completed'"
+        cursor.execute(query)
+        num_completed_orders = cursor.fetchone()[0]
 
-  return True
+        # Get the number of cancelled orders
+        query = "SELECT COUNT(*) FROM orders WHERE status='cancelled'"
+        cursor.execute(query)
+        num_cancelled_orders = cursor.fetchone()[0]
 
-def edit_user(user_id, name, email):
-  # Connect to the database
-  try:
-    connection = mysql.connector.connect(
-      host="localhost",
-      user="user",
-      password="password",
-      database="foodmataz"
-    )
-  except mysql.connector.Error as error:
-    print("Failed to connect to database: {}".format(error))
-    return False
+        # Close the cursor and connection
+        cursor.close()
+        cnx.close()
 
-  cursor = connection.cursor()
-
-  # Update an existing user in the database using a prepared statement and parameterized query
-  query = """
-    UPDATE users
-    SET name = %s, email = %s
-    WHERE id = %s
-  """
-  values = (name, email, user_id)
-  try:
-    cursor.execute(query, values)
-    connection.commit()
-  except mysql.connector.Error
+        return {
+            'num_users': num_users,
+            'num_sellers': num_sellers,
+            'num_carriers': num_carriers,
+            'num_items': num_items,
+            'total_revenue': total_revenue,
+            'num_pending_orders': num_pending_orders,
+            'num_completed_orders': num_completed_orders,
+            'num_cancelled_orders': num_cancelled_orders
+        }
+    except Error as e:
+        print(f'Error: {e}')
