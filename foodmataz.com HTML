@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Foodmataz - Connecting You with Fresh Food and Fast Delivery</title>	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<body>
+
+	<header>
+
+		<div class="container">
+
+			<h1>Foodmataz</h1>
+
+			<nav>
+
+				<ul>
+
+					<li><a href="#">Buy Fresh Food</a></li>
+
+					<li><a href="#">Order Fresh Meals</a></li>
+
+					<li><a href="#">Find Ingredients</a></li>
+
+					<li><a href="#">Locate Sellers</a></li>
+
+				</ul>
+
+			</nav>
+
+		</div>
+
+	</header>
+
+	<section class="hero">
+
+		<div class="container">
+
+			<h2>Get Fresh Food and Quick Delivery Right to Your Doorstep</h2>
+
+			<p>Foodmataz is a platform that connects buyers with sellers of fresh food, items, ingredients, and meals from locations close to their chosen areas. With our fast delivery partners who use any available means of transportation (bicycles, motorbikes, or tricycles), we ensure that your orders are delivered quickly and at an affordable rate.</p>
+
+			<a href="#" class="cta">Start Shopping Now</a>
+
+		</div>
+
+	</section>
+
+	<section class="features">
+
+		<div class="container">
+
+			<h2>Why Choose Foodmataz?</h2>
+
+			<div class="feature">
+
+				<i class="fas fa-check-circle"></i>
+
+				<h3>Fresh and Quality Products</h3>
+
+				<p>Our platform only lists sellers who offer fresh, quality food products. You can rest assured that you're getting the best from us.</p>
+
+			</div>
+
+			<div class="feature">
+
+				<i class="fas fa-check-circle"></i>
+
+				<h3>Fast and Reliable Delivery</h3>
+
+				<p>Our delivery partners are always ready to deliver your orders quickly and efficiently. We use any available means of transportation to ensure that your orders arrive on time.</p>
+
+			</div>
+
+			<div class="feature">
+
+				<i class="fas fa-check-circle"></i>
+
+				<h3>Convenient and Easy Ordering</h3>
+
+				<p>Our platform is designed to make ordering easy and convenient for you. With just a few clicks, you can find your preferred food items and place your order with ease.</p>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<section class="cta">
+
+		<div class="container">
+
+			<h2>Ready to Get Fresh Food and Quick Delivery?</h2>
+
+			<p>Sign up now to start shopping with Foodmataz.</p>
+
+			<a href="#" class="cta">Sign Up Now</a>
+
+		</div>
+
+	</section>
+
+	<footer>
+
+		<div class="container">
+
+			<p>Foodmataz &copy; 2023</p>
+
+		</div>
+
+	</footer>
+
+</body>
+
+</html>
